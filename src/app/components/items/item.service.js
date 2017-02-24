@@ -7,16 +7,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var ItemsComponent = (function () {
-    function ItemsComponent() {
+var ItemService = (function () {
+    function ItemService() {
     }
-    return ItemsComponent;
+    ItemService.prototype.getItems = function () { };
+    return ItemService;
 }());
-ItemsComponent = __decorate([
-    core_1.Component({
-        selector: 'dashboard',
-        templateUrl: './components/items/items.html'
-    })
-], ItemsComponent);
-exports.ItemsComponent = ItemsComponent;
-//# sourceMappingURL=items.component.js.map
+ItemService = __decorate([
+    core_1.Injectable()
+], ItemService);
+exports.ItemService = ItemService;
+//# sourceMappingURL=item.service.js.map
