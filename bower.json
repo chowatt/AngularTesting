@@ -1,0 +1,46 @@
+{
+  "name": "Library Catalog",
+  "version": "0.1",
+  "homepage": "https://github.com/Chowatt/library_catalog",
+  "authors": [
+    "Chris Howatt <chris@howattech.com>"
+  ],
+  "description": "web components for Library Catalog",
+  "main": "bower.json",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "webroot/bower/"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.*",
+    "moment": "*",
+    "jquery.inputmask": "git@github.com:RobinHerbots/jquery.inputmask.git",
+    "spectrum": "git@github.com:bgrins/spectrum.git",
+    "jqueryui-timepicker-addon": "1.6.3",
+    "please-wait": "*",
+    "spinkit": "*",
+    "font-awesome": "4.6",
+    "yamm3": "*",
+    "markdown": "*",
+    "bootstrap-markdown": "*",
+    "salvattore": "git@github.com:rnmp/salvattore.git",
+    "multi-select": "git@github.com:lou/multi-select.git",
+    "admin-lte": "*",
+    "jquery": "~1",
+    "jquery-ui": "*",
+    "jsoneditor": "*",
+    "free-file-icons": "git@github.com:GalenCollege/Free-file-icons.git",
+    "dropzone": "git@github.com:enyo/dropzone.git",
+    "json-editor": "git@github.com:jdorn/json-editor.git",
+    "zxcvbn": "*",
+    "jstree": "git@github.com:vakata/jstree.git",
+    "viewerjs": "git@github.com:kogmbh/ViewerJS.git"
+  }
+}
