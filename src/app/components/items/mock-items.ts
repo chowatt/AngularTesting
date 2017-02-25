@@ -1,12 +1,12 @@
-import { Item } from './components/items/item';
+import { Item } from './item';
 
 export const ITEMS: Item[] = [
-	[
+	{
 		id: 1,
 		sku: 'abcd',
-		description: 'Lorem Ipsum',
+		descrip: 'Lorem Ipsum',
 		qty: 100,
 		created: new Date(),
 		modified: new Date()
-	]
+	}
 ];

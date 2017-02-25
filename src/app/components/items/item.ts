@@ -1,8 +1,8 @@
 export class Item {
 	id: number;
 	sku: string;
-	description; string;
+	descrip: string;
 	qty: number;
-	created: date;
-	modified: date;
+	created: Date;
+	modified: Date;
 }

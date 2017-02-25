@@ -7,7 +7,7 @@ System.register(["@angular/core"], function (exports_1, context_1) {
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, AppComponent;
+    var core_1, ItemTypesComponent;
     return {
         setters: [
             function (core_1_1) {
@@ -15,20 +15,19 @@ System.register(["@angular/core"], function (exports_1, context_1) {
             }
         ],
         execute: function () {
-            AppComponent = (function () {
-                function AppComponent() {
-                    this.name = 'Angulars';
+            ItemTypesComponent = (function () {
+                function ItemTypesComponent() {
                 }
-                return AppComponent;
+                return ItemTypesComponent;
             }());
-            AppComponent = __decorate([
+            ItemTypesComponent = __decorate([
                 core_1.Component({
-                    selector: 'my-app',
-                    template: "\n<h1>Hello {{name}}</h1>\n<router-outlet></router-outlet>\n",
+                    selector: 'item-types',
+                    template: "<h1>Item Types</h1>"
                 })
-            ], AppComponent);
-            exports_1("AppComponent", AppComponent);
+            ], ItemTypesComponent);
+            exports_1("ItemTypesComponent", ItemTypesComponent);
         }
     };
 });
-//# sourceMappingURL=app.component.js.map
+//# sourceMappingURL=item-types.component.js.map
