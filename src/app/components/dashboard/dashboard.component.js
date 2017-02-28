@@ -15,16 +15,15 @@ System.register(["@angular/core"], function (exports_1, context_1) {
             }
         ],
         execute: function () {
-            DashboardComponent = (function () {
-                function DashboardComponent() {
+            DashboardComponent = class DashboardComponent {
+                constructor() {
                     this.name = 'Dashboard';
                 }
-                return DashboardComponent;
-            }());
+            };
             DashboardComponent = __decorate([
                 core_1.Component({
                     selector: 'dashboard',
-                    template: "<h1>Hello {{name}}</h1>",
+                    template: `<h1>Hello {{name}}</h1>`,
                 })
             ], DashboardComponent);
             exports_1("DashboardComponent", DashboardComponent);

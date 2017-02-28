@@ -21,22 +21,20 @@ System.register(["@angular/core", "./item.service"], function (exports_1, contex
             }
         ],
         execute: function () {
-            ItemsComponent = (function () {
-                function ItemsComponent(itemService) {
+            ItemsComponent = class ItemsComponent {
+                constructor(itemService) {
                     this.itemService = itemService;
                 }
-                ItemsComponent.prototype.getItems = function () {
-                    var _this = this;
-                    this.itemService.getItems().then(function (items) { return _this.items = items; });
-                };
-                ItemsComponent.prototype.ngOnInit = function () {
+                getItems() {
+                    this.itemService.getItems().then(items => this.items = items);
+                }
+                ngOnInit() {
                     this.getItems();
-                };
-                ItemsComponent.prototype.onSelect = function (item) {
+                }
+                onSelect(item) {
                     this.selectedItem = item;
-                };
-                return ItemsComponent;
-            }());
+                }
+            };
             ItemsComponent = __decorate([
                 core_1.Component({
                     selector: 'dashboard',

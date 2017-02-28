@@ -33,11 +33,8 @@ System.register(["@angular/core", "@angular/router", "./components/dashboard/das
                 { path: 'items', component: items_component_1.ItemsComponent },
                 { path: 'item-types', component: item_types_component_1.ItemTypesComponent }
             ];
-            AppRoutingModule = (function () {
-                function AppRoutingModule() {
-                }
-                return AppRoutingModule;
-            }());
+            AppRoutingModule = class AppRoutingModule {
+            };
             AppRoutingModule = __decorate([
                 core_1.NgModule({
                     imports: [router_1.RouterModule.forRoot(routes)],

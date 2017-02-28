@@ -5,11 +5,8 @@ System.register([], function (exports_1, context_1) {
     return {
         setters: [],
         execute: function () {
-            Item = (function () {
-                function Item() {
-                }
-                return Item;
-            }());
+            Item = class Item {
+            };
             exports_1("Item", Item);
         }
     };

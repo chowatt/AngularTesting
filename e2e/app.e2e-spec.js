@@ -10,7 +10,7 @@ System.register(["protractor"], function (exports_1, context_1) {
         ],
         execute: function () {
             describe('QuickStart E2E Tests', function () {
-                var expectedMsg = 'Hello Angular';
+                let expectedMsg = 'Hello Angular';
                 beforeEach(function () {
                     protractor_1.browser.get('');
                 });

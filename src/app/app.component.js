@@ -15,16 +15,18 @@ System.register(["@angular/core"], function (exports_1, context_1) {
             }
         ],
         execute: function () {
-            AppComponent = (function () {
-                function AppComponent() {
+            AppComponent = class AppComponent {
+                constructor() {
                     this.name = 'Angulars';
                 }
-                return AppComponent;
-            }());
+            };
             AppComponent = __decorate([
                 core_1.Component({
                     selector: 'my-app',
-                    template: "\n<h1>Hello {{name}}</h1>\n<router-outlet></router-outlet>\n",
+                    template: `
+<h1>Hello {{name}}</h1>
+<router-outlet></router-outlet>
+`,
                 })
             ], AppComponent);
             exports_1("AppComponent", AppComponent);

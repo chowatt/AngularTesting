@@ -18,14 +18,11 @@ System.register(["@angular/core", "./menu-items"], function (exports_1, context_
             }
         ],
         execute: function () {
-            MenuItemService = (function () {
-                function MenuItemService() {
-                }
-                MenuItemService.prototype.getMenuItems = function () {
+            MenuItemService = class MenuItemService {
+                getMenuItems() {
                     return Promise.resolve(menu_items_1.MENUITEMS);
-                };
-                return MenuItemService;
-            }());
+                }
+            };
             MenuItemService = __decorate([
                 core_1.Injectable()
             ], MenuItemService);

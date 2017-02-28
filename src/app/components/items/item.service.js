@@ -18,14 +18,11 @@ System.register(["@angular/core", "./mock-items"], function (exports_1, context_
             }
         ],
         execute: function () {
-            ItemService = (function () {
-                function ItemService() {
-                }
-                ItemService.prototype.getItems = function () {
+            ItemService = class ItemService {
+                getItems() {
                     return Promise.resolve(mock_items_1.ITEMS);
-                };
-                return ItemService;
-            }());
+                }
+            };
             ItemService = __decorate([
                 core_1.Injectable()
             ], ItemService);

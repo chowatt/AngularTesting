@@ -5,11 +5,8 @@ System.register([], function (exports_1, context_1) {
     return {
         setters: [],
         execute: function () {
-            MenuItem = (function () {
-                function MenuItem() {
-                }
-                return MenuItem;
-            }());
+            MenuItem = class MenuItem {
+            };
             exports_1("MenuItem", MenuItem);
             ;
         }

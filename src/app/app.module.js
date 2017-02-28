@@ -36,11 +36,8 @@ System.register(["@angular/core", "@angular/platform-browser", "./app-routing.mo
             }
         ],
         execute: function () {
-            AppModule = (function () {
-                function AppModule() {
-                }
-                return AppModule;
-            }());
+            AppModule = class AppModule {
+            };
             AppModule = __decorate([
                 core_1.NgModule({
                     imports: [platform_browser_1.BrowserModule, app_routing_module_1.AppRoutingModule],

@@ -16,24 +16,24 @@ System.register(["./app.component", "@angular/core/testing", "@angular/platform-
         ],
         execute: function () {
             describe('AppComponent', function () {
-                var de;
-                var comp;
-                var fixture;
-                beforeEach(testing_1.async(function () {
+                let de;
+                let comp;
+                let fixture;
+                beforeEach(testing_1.async(() => {
                     testing_1.TestBed.configureTestingModule({
                         declarations: [app_component_1.AppComponent]
                     })
                         .compileComponents();
                 }));
-                beforeEach(function () {
+                beforeEach(() => {
                     fixture = testing_1.TestBed.createComponent(app_component_1.AppComponent);
                     comp = fixture.componentInstance;
                     de = fixture.debugElement.query(platform_browser_1.By.css('h1'));
                 });
-                it('should create component', function () { return expect(comp).toBeDefined(); });
-                it('should have expected <h1> text', function () {
+                it('should create component', () => expect(comp).toBeDefined());
+                it('should have expected <h1> text', () => {
                     fixture.detectChanges();
-                    var h1 = de.nativeElement;
+                    const h1 = de.nativeElement;
                     expect(h1.innerText).toMatch(/angular/i, '<h1> should say something about "Angular"');
                 });
             });

@@ -15,15 +15,12 @@ System.register(["@angular/core"], function (exports_1, context_1) {
             }
         ],
         execute: function () {
-            ItemTypesComponent = (function () {
-                function ItemTypesComponent() {
-                }
-                return ItemTypesComponent;
-            }());
+            ItemTypesComponent = class ItemTypesComponent {
+            };
             ItemTypesComponent = __decorate([
                 core_1.Component({
                     selector: 'item-types',
-                    template: "<h1>Item Types</h1>"
+                    template: `<h1>Item Types</h1>`
                 })
             ], ItemTypesComponent);
             exports_1("ItemTypesComponent", ItemTypesComponent);

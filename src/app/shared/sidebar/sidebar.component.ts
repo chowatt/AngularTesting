@@ -1,20 +1,37 @@
-import { Component } from '@angular/core';
+import 'rxjs/add/operator/switchMap';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Location } from '@angular/common';
+
 import { MenuItem } from './menu-item';
 import { MENUITEMS } from './menu-items';
+import { MenuItemService } from './menu-item.service';
 
 @Component({
   selector: 'my-sidebar',
-  templateUrl: './app/shared/sidebar/sidebar.html'
+  templateUrl: './app/shared/sidebar/sidebar.html',
+  providers: [MenuItemService]
   //template: '{{title}}'
 })
 
-export class SidebarComponent {
-  title = "Main Menu";
+
+export class SidebarComponent implements OnInit{
   
-   ngOnInit(): void {
-    this.route.params
-      .switchMap((params: Params) => this.heroService.getHero(+params['id']))
-      .subscribe(hero => this.hero = hero);
+  title = "Main Menu";
+  menuItems: MenuItem[];
+
+  constructor(
+    private menuItemService: MenuItemService,
+    private route: ActivatedRoute,
+    private location: Location
+  ) { }
+
+  ngOnInit(): void {
+    this.getMenuItems();
+  }
+
+  getMenuItems(): void {
+    this.menuItemService.getMenuItems().then(menuItems => this.menuItems = menuItems);
   }
 
   goBack(): void {
