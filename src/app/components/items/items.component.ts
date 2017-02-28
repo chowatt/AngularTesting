@@ -7,21 +7,22 @@ import { ItemService } from './item.service';
   templateUrl: './app/components/items/items.html',
   providers: [ItemService]
 })
+
 export class ItemsComponent implements OnInit {
   items: Item[];
   selectedItem: Item;
 
-constructor(private itemService: ItemService) { }
+  constructor(private itemService: ItemService) { }
 
-	getItems(): void {
-      this.itemService.getItems().then(items => this.items = items);
+  getItems(): void {
+    this.itemService.getItems().then(items => this.items = items);
   }
 
   ngOnInit(): void {
     this.getItems();
   }
 
-   onSelect(item: Item): void {
+  onSelect(item: Item): void {
     this.selectedItem = item;
   }
 }

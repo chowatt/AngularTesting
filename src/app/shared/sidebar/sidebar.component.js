@@ -17,13 +17,24 @@ System.register(["@angular/core"], function (exports_1, context_1) {
         execute: function () {
             SidebarComponent = (function () {
                 function SidebarComponent() {
+                    this.title = "Main Menu";
                 }
+                SidebarComponent.prototype.ngOnInit = function () {
+                    var _this = this;
+                    this.route.params
+                        .switchMap(function (params) { return _this.heroService.getHero(+params['id']); })
+                        .subscribe(function (hero) { return _this.hero = hero; });
+                };
+                SidebarComponent.prototype.goBack = function () {
+                    this.location.back();
+                };
                 return SidebarComponent;
             }());
             SidebarComponent = __decorate([
                 core_1.Component({
                     selector: 'my-sidebar',
                     templateUrl: './app/shared/sidebar/sidebar.html'
+                    //template: '{{title}}'
                 })
             ], SidebarComponent);
             exports_1("SidebarComponent", SidebarComponent);

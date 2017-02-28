@@ -25,7 +25,11 @@
 		<!-- /.search form -->
 		<!-- sidebar menu: : style can be found in sidebar.less -->
 		<ul class="sidebar-menu">
-			<li class="header">MAIN NAVIGATION</li>
+			<li class="header">{{title}}</li>
+			<li *ngFor="let menuItem of items">
+				test
+				{{item.title}}
+			</li>
 			<li class="treeview">
 				<a href="#">
 					<i class="fa fa-dashboard"></i> <span>Dashboard</span>
