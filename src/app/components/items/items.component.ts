@@ -12,7 +12,9 @@ export class ItemsComponent implements OnInit {
   items: Item[];
   selectedItem: Item;
 
-  constructor(private itemService: ItemService) { }
+  constructor(
+    private itemService: ItemService
+  ) { }
 
   getItems(): void {
     this.itemService.getItems().then(items => this.items = items);
