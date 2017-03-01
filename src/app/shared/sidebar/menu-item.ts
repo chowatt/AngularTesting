@@ -4,4 +4,5 @@ export class MenuItem {
     itemtype: string;
     location: string;
     sort: number;
+    icon: string;
 };

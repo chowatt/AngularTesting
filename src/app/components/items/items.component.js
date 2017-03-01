@@ -1,4 +1,4 @@
-System.register(["@angular/core", "./item.service"], function (exports_1, context_1) {
+System.register(["@angular/core", "./item.service", "@angular/router", "@angular/common"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -10,7 +10,7 @@ System.register(["@angular/core", "./item.service"], function (exports_1, contex
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, item_service_1, ItemsComponent;
+    var core_1, item_service_1, router_1, common_1, ItemsComponent;
     return {
         setters: [
             function (core_1_1) {
@@ -18,21 +18,38 @@ System.register(["@angular/core", "./item.service"], function (exports_1, contex
             },
             function (item_service_1_1) {
                 item_service_1 = item_service_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
+            },
+            function (common_1_1) {
+                common_1 = common_1_1;
             }
         ],
         execute: function () {
             ItemsComponent = class ItemsComponent {
-                constructor(itemService) {
+                constructor(itemService, route, location) {
                     this.itemService = itemService;
+                    this.route = route;
+                    this.location = location;
                 }
                 getItems() {
-                    this.itemService.getItems().then(items => this.items = items);
+                    this.itemService.getItems()
+                        .then(items => this.items = items);
                 }
                 ngOnInit() {
                     this.getItems();
                 }
                 onSelect(item) {
                     this.selectedItem = item;
+                }
+                onNew(item) {
+                }
+                onSave(item) {
+                }
+                onEdit(item) {
+                }
+                onDelete(item) {
                 }
             };
             ItemsComponent = __decorate([
@@ -41,7 +58,9 @@ System.register(["@angular/core", "./item.service"], function (exports_1, contex
                     templateUrl: './app/components/items/items.html',
                     providers: [item_service_1.ItemService]
                 }),
-                __metadata("design:paramtypes", [item_service_1.ItemService])
+                __metadata("design:paramtypes", [item_service_1.ItemService,
+                    router_1.ActivatedRoute,
+                    common_1.Location])
             ], ItemsComponent);
             exports_1("ItemsComponent", ItemsComponent);
         }

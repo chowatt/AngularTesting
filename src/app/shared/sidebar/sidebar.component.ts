@@ -8,33 +8,34 @@ import { MENUITEMS } from './menu-items';
 import { MenuItemService } from './menu-item.service';
 
 @Component({
-  selector: 'my-sidebar',
-  templateUrl: './app/shared/sidebar/sidebar.html',
-  providers: [MenuItemService]
-  //template: '{{title}}'
+	selector: 'my-sidebar',
+	templateUrl: './app/shared/sidebar/sidebar.html',
+	providers: [MenuItemService]
+	//template: '{{title}}'
 })
 
 
-export class SidebarComponent implements OnInit{
-  
-  title = "Main Menu";
-  menuItems: MenuItem[];
+export class SidebarComponent implements OnInit {
 
-  constructor(
-    private menuItemService: MenuItemService,
-    private route: ActivatedRoute,
-    private location: Location
-  ) { }
+	title = "Main Menu";
+	menuItems: MenuItem[];
+	selectedItem: MenuItem;
 
-  ngOnInit(): void {
-    this.getMenuItems();
-  }
+	constructor(
+		private menuItemService: MenuItemService,
+		private route: ActivatedRoute,
+		private location: Location
+	) { }
 
-  getMenuItems(): void {
-    this.menuItemService.getMenuItems().then(menuItems => this.menuItems = menuItems);
-  }
+	ngOnInit(): void {
+		this.getMenuItems();
+	}
 
-  goBack(): void {
-    this.location.back();
-  }
+	getMenuItems(): void {
+		this.menuItemService.getMenuItems().then(menuItems => this.menuItems = menuItems);
+	}
+
+	goBack(): void {
+		this.location.back();
+	}
 }

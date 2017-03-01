@@ -1,11 +1,15 @@
 <h2>Items view</h2>
-<button (click)="add()" class="btn btn-primary">New Item</button>
+<button (click)="onNew()" class="btn btn-primary">New Item</button>
 <ul>
     <li *ngFor="let item of items" (click)="onSelect(item)">
-        {{item.descrip}} <button (click)="edit(item)" class="btn btn-primary btn-xs">Edit</button>
+        {{item.descrip}} <button (click)="onEdit(item)" class="btn btn-primary btn-xs">Edit</button>
     </li>
 </ul>
 
 <div *ngIf="selectedItem">
 {{selectedItem.descrip}}
+</div>
+
+<div *ngIf="newItem">
+    <input type="string">
 </div>

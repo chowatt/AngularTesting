@@ -7,7 +7,7 @@ System.register([], function (exports_1, context_1) {
         execute: function () {
             exports_1("ITEMS", ITEMS = [
                 {
-                    id: 1,
+                    id: '1',
                     sku: 'abcd',
                     descrip: 'Lorem Ipsum',
                     qty: 100,

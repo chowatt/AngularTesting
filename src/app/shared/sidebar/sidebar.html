@@ -26,9 +26,12 @@
 		<!-- sidebar menu: : style can be found in sidebar.less -->
 		<ul class="sidebar-menu">
 			<li class="header">{{title}}</li>
-			<li *ngFor="let menuItem of items">
-				test
-				{{item.title}}
+			<li *ngFor="let menuItem of menuItems" class="treeview">
+				 <a routerLink="{{menuItem.location}}">
+					 <i *ngIf="menuItem.icon != ''" class="{{menuItem.icon}}"></i>
+					 {{menuItem.title}}
+				</a>
+				{{menuItem.title}}
 			</li>
 			<li class="treeview">
 				<a href="#">
