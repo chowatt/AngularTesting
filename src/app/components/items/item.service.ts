@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Headers, Http, Response } from '@angular/http';
 
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
 import { Item } from './item';
@@ -13,11 +16,16 @@ export class ItemService {
 
 	constructor(private http: Http) { }
 
-	getItems(): Promise<Item[]> {
+	getItems(): Observable<Item[]> {
 		return this.http.get(this.itemsUrl)
-			.toPromise()
-			.then(response => response.json().data as Item[])
+			.map(this.extractData)
 			.catch(this.handleError);
+	}
+
+	private extractData(res: Response) {
+		let body = res.json();
+		console.log(body);
+		return body.items || {};
 	}
 
 	getItem(id: number): Promise<Item> {
@@ -28,12 +36,19 @@ export class ItemService {
 		return;
 	}
 
-	create(item: Item): Promise<Item> {
-		return Promise.resolve(new Item);
+	create(item: Item): Observable<Item> {
+		return this.http
+			.post(this.itemsUrl, item, { headers: this.headers })
+			.map(this.extractData)
+			.catch(this.handleError);
 	}
 
-	update(item: Item): Promise<Item> {
-		return Promise.resolve(new Item);
+	update(item: Item): Observable<Item> {
+		const url = `${this.itemsUrl}/${item.id}`;
+		return this.http
+			.put(url, item, { headers: this.headers })
+			.map(this.extractData)
+			.catch(this.handleError);
 	}
 
 	private handleError(error: any): Promise<any> {

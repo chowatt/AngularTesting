@@ -14,16 +14,20 @@ import { Location } from '@angular/common';
 export class ItemsComponent implements OnInit {
   items: Item[];
   selectedItem: Item;
+  errorMessage: any;
 
   constructor(
-		private itemService: ItemService,
-		private route: ActivatedRoute,
-		private location: Location
-	) { }
+    private itemService: ItemService,
+    private route: ActivatedRoute,
+    private location: Location
+  ) { }
 
   getItems(): void {
     this.itemService.getItems()
-      .then(items => this.items = items);
+      .subscribe(
+      items => this.items = items,
+      error => this.errorMessage = <any>error
+      );
   }
 
   ngOnInit(): void {
@@ -35,7 +39,17 @@ export class ItemsComponent implements OnInit {
   }
 
   onNew(item: Item): void {
+    this.selectedItem = new Item;
+  }
 
+  save(item: Item): void {
+    if (item.id) {
+      this.itemService.update(item)
+        .subscribe(item => this.selectedItem = item, error => this.errorMessage = <any>error);
+    } else {
+      this.itemService.create(item)
+        .subscribe(item => this.items.push(item), error => this.errorMessage = <any>error)
+    }
   }
 
   onSave(item: Item): void {

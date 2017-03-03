@@ -2,12 +2,19 @@
 <button (click)="onNew()" class="btn btn-primary">New Item</button>
 <ul>
     <li *ngFor="let item of items" (click)="onSelect(item)">
-        {{item.descrip}} <button (click)="onEdit(item)" class="btn btn-primary btn-xs">Edit</button>
+        {{item.description}} <button (click)="onEdit(item)" class="btn btn-primary btn-xs">Edit</button>
     </li>
 </ul>
 
-<div *ngIf="selectedItem">
+<div *ngIf="selectedItem && selectedItem.id">
 {{selectedItem.descrip}}
+</div>
+
+<div *ngIf="selectedItem">
+    <input [(ngModel)]="selectedItem.sku" placeholder="sku"/>
+    <input [(ngModel)]="selectedItem.description" placeholder="description"/>
+    <input [(ngModel)]="selectedItem.qty" placeholder="qty"/>
+    <button (click)="save(selectedItem)" class="btn btn-success">Save</button>
 </div>
 
 <div *ngIf="newItem">

@@ -1,4 +1,4 @@
-System.register(["@angular/core", "@angular/http", "rxjs/add/operator/toPromise", "./item"], function (exports_1, context_1) {
+System.register(["@angular/core", "@angular/http", "rxjs/add/operator/catch", "rxjs/add/operator/map", "rxjs/add/operator/toPromise", "./item"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -21,6 +21,10 @@ System.register(["@angular/core", "@angular/http", "rxjs/add/operator/toPromise"
             },
             function (_1) {
             },
+            function (_2) {
+            },
+            function (_3) {
+            },
             function (item_1_1) {
                 item_1 = item_1_1;
             }
@@ -34,9 +38,13 @@ System.register(["@angular/core", "@angular/http", "rxjs/add/operator/toPromise"
                 }
                 getItems() {
                     return this.http.get(this.itemsUrl)
-                        .toPromise()
-                        .then(response => response.json().data)
+                        .map(this.extractData)
                         .catch(this.handleError);
+                }
+                extractData(res) {
+                    let body = res.json();
+                    console.log(body);
+                    return body.items || {};
                 }
                 getItem(id) {
                     return Promise.resolve(new item_1.Item);
@@ -45,10 +53,17 @@ System.register(["@angular/core", "@angular/http", "rxjs/add/operator/toPromise"
                     return;
                 }
                 create(item) {
-                    return Promise.resolve(new item_1.Item);
+                    return this.http
+                        .post(this.itemsUrl, item, { headers: this.headers })
+                        .map(this.extractData)
+                        .catch(this.handleError);
                 }
                 update(item) {
-                    return Promise.resolve(new item_1.Item);
+                    const url = `${this.itemsUrl}/${item.id}`;
+                    return this.http
+                        .put(url, item, { headers: this.headers })
+                        .map(this.extractData)
+                        .catch(this.handleError);
                 }
                 handleError(error) {
                     console.error('An error occurred', error); // for demo purposes only

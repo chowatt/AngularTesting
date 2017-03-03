@@ -1,4 +1,4 @@
-System.register(["@angular/core", "./item.service", "@angular/router", "@angular/common"], function (exports_1, context_1) {
+System.register(["@angular/core", "./item", "./item.service", "@angular/router", "@angular/common"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -10,11 +10,14 @@ System.register(["@angular/core", "./item.service", "@angular/router", "@angular
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, item_service_1, router_1, common_1, ItemsComponent;
+    var core_1, item_1, item_service_1, router_1, common_1, ItemsComponent;
     return {
         setters: [
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (item_1_1) {
+                item_1 = item_1_1;
             },
             function (item_service_1_1) {
                 item_service_1 = item_service_1_1;
@@ -35,7 +38,7 @@ System.register(["@angular/core", "./item.service", "@angular/router", "@angular
                 }
                 getItems() {
                     this.itemService.getItems()
-                        .then(items => this.items = items);
+                        .subscribe(items => this.items = items, error => this.errorMessage = error);
                 }
                 ngOnInit() {
                     this.getItems();
@@ -44,6 +47,17 @@ System.register(["@angular/core", "./item.service", "@angular/router", "@angular
                     this.selectedItem = item;
                 }
                 onNew(item) {
+                    this.selectedItem = new item_1.Item;
+                }
+                save(item) {
+                    if (item.id) {
+                        this.itemService.update(item)
+                            .subscribe(item => this.selectedItem = item, error => this.errorMessage = error);
+                    }
+                    else {
+                        this.itemService.create(item)
+                            .subscribe(item => this.items.push(item), error => this.errorMessage = error);
+                    }
                 }
                 onSave(item) {
                 }

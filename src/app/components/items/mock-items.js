@@ -9,7 +9,7 @@ System.register([], function (exports_1, context_1) {
                 {
                     id: '1',
                     sku: 'abcd',
-                    descrip: 'Lorem Ipsum',
+                    description: 'Lorem Ipsum',
                     qty: 100,
                     created: new Date(),
                     modified: new Date()
