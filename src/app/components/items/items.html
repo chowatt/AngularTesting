@@ -1,22 +1,24 @@
 <h2>Items view</h2>
 <button (click)="onNew()" class="btn btn-primary">New Item</button>
-<ul>
-    <li *ngFor="let item of items" (click)="onSelect(item)">
-        {{item.description}} <button (click)="onEdit(item)" class="btn btn-primary btn-xs">Edit</button>
-    </li>
-</ul>
 
-<div *ngIf="selectedItem && selectedItem.id">
-{{selectedItem.descrip}}
+<div *ngIf="!selectedItem">
+    <table class="table">
+        <tr *ngFor="let item of items">
+            <td>{{item.id}}</td>
+            <td>{{item.sku}}</td>
+            <td>{{item.description}}</td>
+            <td>{{item.qty}}</td>
+            <td>{{item.created}}</td>
+            <td>{{item.modified}}</td>
+            <td><button (click)="onEdit(item)" class="btn btn-primary btn-xs">Edit</button></td>
+        </tr>
+    </table>
 </div>
 
 <div *ngIf="selectedItem">
-    <input [(ngModel)]="selectedItem.sku" placeholder="sku"/>
-    <input [(ngModel)]="selectedItem.description" placeholder="description"/>
-    <input [(ngModel)]="selectedItem.qty" placeholder="qty"/>
+    <input [(ngModel)]="selectedItem.sku" placeholder="sku" />
+    <input [(ngModel)]="selectedItem.description" placeholder="description" />
+    <input [(ngModel)]="selectedItem.qty" placeholder="qty" />
+    <button (click)="cancel()" class="btn btn-default">Cancel</button>
     <button (click)="save(selectedItem)" class="btn btn-success">Save</button>
-</div>
-
-<div *ngIf="newItem">
-    <input type="string">
 </div>

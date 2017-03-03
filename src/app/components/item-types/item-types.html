@@ -1,0 +1,18 @@
+<h2>Items Types</h2>
+<button (click)="onNew()" class="btn btn-primary">New Item Type</button>
+
+<div *ngIf="!selectedItemType">
+    <table class="table">
+        <tr *ngFor="let itemType of itemTypes">
+            <td>{{itemType.id}}</td>
+            <td>{{itemType.name}}</td>
+            <td><button (click)="onEdit(itemType)" class="btn btn-primary btn-xs">Edit</button></td>
+        </tr>
+    </table>
+</div>
+
+<div *ngIf="selectedItemType">
+    <input [(ngModel)]="selectedItemType.name" placeholder="Name" />
+    <button (click)="cancel()" class="btn btn-default">Cancel</button>
+    <button (click)="save(selectedItemType)" class="btn btn-success">Save</button>
+</div>

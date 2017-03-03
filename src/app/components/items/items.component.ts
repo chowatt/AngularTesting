@@ -45,23 +45,25 @@ export class ItemsComponent implements OnInit {
   save(item: Item): void {
     if (item.id) {
       this.itemService.update(item)
-        .subscribe(item => this.selectedItem = item, error => this.errorMessage = <any>error);
+        .subscribe(item => this.selectedItem = null, error => this.errorMessage = <any>error, () => this.selectedItem = null);
+
+
     } else {
       this.itemService.create(item)
-        .subscribe(item => this.items.push(item), error => this.errorMessage = <any>error)
+        .subscribe(item => this.items.push(item), error => this.errorMessage = <any>error, () => this.selectedItem = null)
     }
   }
 
-  onSave(item: Item): void {
-
-  }
-
   onEdit(item: Item): void {
-
+    this.selectedItem = item;
   }
 
   onDelete(item: Item): void {
 
+  }
+
+  cancel(): void {
+    this.selectedItem = null;
   }
 
 }

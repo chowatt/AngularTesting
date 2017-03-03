@@ -6,23 +6,23 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
-import { Item } from './item';
+import { ItemType } from './item-type';
 
 @Injectable()
-export class ItemService {
+export class ItemTypesService {
 
 	private headers = new Headers({ 'Content-Type': 'application/json' });
-	private itemsUrl = "https://onlineapp-v2-0-chowatt33555.codeanyapp.com/items";
+	private itemsUrl = "https://onlineapp-v2-0-chowatt33555.codeanyapp.com/item_types";
 
 	constructor(private http: Http) { }
 
-	getItems(): Observable<Item[]> {
+	getItems(): Observable<ItemType[]> {
 		return this.http.get(this.itemsUrl)
 			.map(this.extractData)
 			.catch(this.handleError);
 	}
 
-	getItem(id: number): Observable<Item> {
+	getItem(id: number): Observable<ItemType> {
 		const url = `${this.itemsUrl}/${id}`;
 		return this.http.get(url)
 			.map(this.extractData)
@@ -36,17 +36,17 @@ export class ItemService {
 			.catch(this.handleError);
 	}
 
-	create(item: Item): Observable<Item> {
+	create(itemType: ItemType): Observable<ItemType> {
 		return this.http
-			.post(this.itemsUrl, item, { headers: this.headers })
+			.post(this.itemsUrl, itemType, { headers: this.headers })
 			.map(this.extractData)
 			.catch(this.handleError);
 	}
 
-	update(item: Item): Observable<Item> {
-		const url = `${this.itemsUrl}/${item.id}`;
+	update(itemType: ItemType): Observable<ItemType> {
+		const url = `${this.itemsUrl}/${itemType.id}`;
 		return this.http
-			.put(url, item, { headers: this.headers })
+			.put(url, itemType, { headers: this.headers })
 			.map(this.extractData)
 			.catch(this.handleError);
 	}
@@ -58,8 +58,7 @@ export class ItemService {
 
 	private extractData(res: Response) {
 		let body = res.json();
-		console.log(body);
-		return body.item || body.items || {};
+		return body.item_type || body.item_types || {};
 	}
 
 }

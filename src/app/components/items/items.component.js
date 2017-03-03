@@ -52,18 +52,20 @@ System.register(["@angular/core", "./item", "./item.service", "@angular/router",
                 save(item) {
                     if (item.id) {
                         this.itemService.update(item)
-                            .subscribe(item => this.selectedItem = item, error => this.errorMessage = error);
+                            .subscribe(item => this.selectedItem = null, error => this.errorMessage = error, () => this.selectedItem = null);
                     }
                     else {
                         this.itemService.create(item)
-                            .subscribe(item => this.items.push(item), error => this.errorMessage = error);
+                            .subscribe(item => this.items.push(item), error => this.errorMessage = error, () => this.selectedItem = null);
                     }
                 }
-                onSave(item) {
-                }
                 onEdit(item) {
+                    this.selectedItem = item;
                 }
                 onDelete(item) {
+                }
+                cancel() {
+                    this.selectedItem = null;
                 }
             };
             ItemsComponent = __decorate([

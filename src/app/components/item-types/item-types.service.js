@@ -10,7 +10,7 @@ System.register(["@angular/core", "@angular/http", "rxjs/add/operator/catch", "r
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, http_1, ItemService;
+    var core_1, http_1, ItemTypesService;
     return {
         setters: [
             function (core_1_1) {
@@ -27,11 +27,11 @@ System.register(["@angular/core", "@angular/http", "rxjs/add/operator/catch", "r
             }
         ],
         execute: function () {
-            ItemService = class ItemService {
+            ItemTypesService = class ItemTypesService {
                 constructor(http) {
                     this.http = http;
                     this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-                    this.itemsUrl = "https://onlineapp-v2-0-chowatt33555.codeanyapp.com/items";
+                    this.itemsUrl = "https://onlineapp-v2-0-chowatt33555.codeanyapp.com/item_types";
                 }
                 getItems() {
                     return this.http.get(this.itemsUrl)
@@ -50,16 +50,16 @@ System.register(["@angular/core", "@angular/http", "rxjs/add/operator/catch", "r
                         .map(this.extractData)
                         .catch(this.handleError);
                 }
-                create(item) {
+                create(itemType) {
                     return this.http
-                        .post(this.itemsUrl, item, { headers: this.headers })
+                        .post(this.itemsUrl, itemType, { headers: this.headers })
                         .map(this.extractData)
                         .catch(this.handleError);
                 }
-                update(item) {
-                    const url = `${this.itemsUrl}/${item.id}`;
+                update(itemType) {
+                    const url = `${this.itemsUrl}/${itemType.id}`;
                     return this.http
-                        .put(url, item, { headers: this.headers })
+                        .put(url, itemType, { headers: this.headers })
                         .map(this.extractData)
                         .catch(this.handleError);
                 }
@@ -69,16 +69,15 @@ System.register(["@angular/core", "@angular/http", "rxjs/add/operator/catch", "r
                 }
                 extractData(res) {
                     let body = res.json();
-                    console.log(body);
-                    return body.item || body.items || {};
+                    return body.item_type || body.item_types || {};
                 }
             };
-            ItemService = __decorate([
+            ItemTypesService = __decorate([
                 core_1.Injectable(),
                 __metadata("design:paramtypes", [http_1.Http])
-            ], ItemService);
-            exports_1("ItemService", ItemService);
+            ], ItemTypesService);
+            exports_1("ItemTypesService", ItemTypesService);
         }
     };
 });
-//# sourceMappingURL=item.service.js.map
+//# sourceMappingURL=item-types.service.js.map
