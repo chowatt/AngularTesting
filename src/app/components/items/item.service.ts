@@ -12,7 +12,7 @@ import { Item } from './item';
 export class ItemService {
 
 	private headers = new Headers({ 'Content-Type': 'application/json' });
-	private itemsUrl = "https://onlineapp-v2-0-chowatt33555.codeanyapp.com/items";
+	private itemsUrl = "https://api-testing-chowatt33555.codeanyapp.com/items";
 
 	constructor(private http: Http) { }
 

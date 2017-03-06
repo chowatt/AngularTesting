@@ -1,4 +1,5 @@
 import { Item } from './item';
+import { ItemType } from '../item-types/item-type';
 
 export const ITEMS: Item[] = [
 	{
@@ -7,6 +8,7 @@ export const ITEMS: Item[] = [
 		description: 'Lorem Ipsum',
 		qty: 100,
 		created: new Date(),
-		modified: new Date()
+		modified: new Date(),
+		item_type: new ItemType
 	}
 ];

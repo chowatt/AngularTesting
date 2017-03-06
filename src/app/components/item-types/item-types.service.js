@@ -31,14 +31,14 @@ System.register(["@angular/core", "@angular/http", "rxjs/add/operator/catch", "r
                 constructor(http) {
                     this.http = http;
                     this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-                    this.itemsUrl = "https://onlineapp-v2-0-chowatt33555.codeanyapp.com/item_types";
+                    this.itemsUrl = "https://api-testing-chowatt33555.codeanyapp.com/item_types";
                 }
-                getItems() {
+                getItemTypes() {
                     return this.http.get(this.itemsUrl)
                         .map(this.extractData)
                         .catch(this.handleError);
                 }
-                getItem(id) {
+                getItemType(id) {
                     const url = `${this.itemsUrl}/${id}`;
                     return this.http.get(url)
                         .map(this.extractData)

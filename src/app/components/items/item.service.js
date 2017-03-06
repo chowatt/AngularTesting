@@ -31,7 +31,7 @@ System.register(["@angular/core", "@angular/http", "rxjs/add/operator/catch", "r
                 constructor(http) {
                     this.http = http;
                     this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-                    this.itemsUrl = "https://onlineapp-v2-0-chowatt33555.codeanyapp.com/items";
+                    this.itemsUrl = "https://api-testing-chowatt33555.codeanyapp.com/items";
                 }
                 getItems() {
                     return this.http.get(this.itemsUrl)

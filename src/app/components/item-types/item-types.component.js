@@ -36,12 +36,8 @@ System.register(["@angular/core", "./item-type", "./item-types.service", "@angul
                     this.route = route;
                     this.location = location;
                 }
-                getItems() {
-                    this.itemTypesService.getItems()
-                        .subscribe(itemTypes => this.itemTypes = itemTypes, error => this.errorMessage = error);
-                }
                 ngOnInit() {
-                    this.getItems();
+                    this.getItemTypes();
                 }
                 onSelect(item) {
                     this.selectedItemType = item;
@@ -50,13 +46,14 @@ System.register(["@angular/core", "./item-type", "./item-types.service", "@angul
                     this.selectedItemType = new item_type_1.ItemType;
                 }
                 save(itemType) {
+                    console.log(itemType);
                     if (itemType.id) {
                         this.itemTypesService.update(itemType)
-                            .subscribe(item => this.selectedItemType = null, error => this.errorMessage = error, () => this.selectedItemType = null);
+                            .subscribe(itemType => this.selectedItemType = itemType, error => this.errorMessage = error, () => this.selectedItemType = null);
                     }
                     else {
                         this.itemTypesService.create(itemType)
-                            .subscribe(item => this.itemTypes.push(itemType), error => this.errorMessage = error, () => this.selectedItemType = null);
+                            .subscribe(itemType => this.itemTypes.push(itemType), error => this.errorMessage = error, () => this.selectedItemType = null);
                     }
                 }
                 onEdit(itemType) {
@@ -66,6 +63,9 @@ System.register(["@angular/core", "./item-type", "./item-types.service", "@angul
                 }
                 cancel() {
                     this.selectedItemType = null;
+                }
+                getItemTypes() {
+                    this.itemTypesService.getItemTypes().subscribe(itemTypes => this.itemTypes = itemTypes, error => this.errorMessage = error);
                 }
             };
             ItemTypesComponent = __decorate([

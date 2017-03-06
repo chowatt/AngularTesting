@@ -1,9 +1,13 @@
-System.register([], function (exports_1, context_1) {
+System.register(["../item-types/item-type"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var ITEMS;
+    var item_type_1, ITEMS;
     return {
-        setters: [],
+        setters: [
+            function (item_type_1_1) {
+                item_type_1 = item_type_1_1;
+            }
+        ],
         execute: function () {
             exports_1("ITEMS", ITEMS = [
                 {
@@ -12,7 +16,8 @@ System.register([], function (exports_1, context_1) {
                     description: 'Lorem Ipsum',
                     qty: 100,
                     created: new Date(),
-                    modified: new Date()
+                    modified: new Date(),
+                    item_type: new item_type_1.ItemType
                 }
             ]);
         }

@@ -12,17 +12,17 @@ import { ItemType } from './item-type';
 export class ItemTypesService {
 
 	private headers = new Headers({ 'Content-Type': 'application/json' });
-	private itemsUrl = "https://onlineapp-v2-0-chowatt33555.codeanyapp.com/item_types";
+	private itemsUrl = "https://api-testing-chowatt33555.codeanyapp.com/item_types";
 
 	constructor(private http: Http) { }
 
-	getItems(): Observable<ItemType[]> {
+	getItemTypes(): Observable<ItemType[]> {
 		return this.http.get(this.itemsUrl)
 			.map(this.extractData)
 			.catch(this.handleError);
 	}
 
-	getItem(id: number): Observable<ItemType> {
+	getItemType(id: number): Observable<ItemType> {
 		const url = `${this.itemsUrl}/${id}`;
 		return this.http.get(url)
 			.map(this.extractData)

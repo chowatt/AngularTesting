@@ -1,4 +1,4 @@
-System.register(["@angular/core", "./item", "./item.service", "@angular/router", "@angular/common"], function (exports_1, context_1) {
+System.register(["@angular/core", "./item", "./item.service", "../item-types/item-types.service", "@angular/router", "@angular/common"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -10,7 +10,7 @@ System.register(["@angular/core", "./item", "./item.service", "@angular/router",
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, item_1, item_service_1, router_1, common_1, ItemsComponent;
+    var core_1, item_1, item_service_1, item_types_service_1, router_1, common_1, ItemsComponent;
     return {
         setters: [
             function (core_1_1) {
@@ -22,6 +22,9 @@ System.register(["@angular/core", "./item", "./item.service", "@angular/router",
             function (item_service_1_1) {
                 item_service_1 = item_service_1_1;
             },
+            function (item_types_service_1_1) {
+                item_types_service_1 = item_types_service_1_1;
+            },
             function (router_1_1) {
                 router_1 = router_1_1;
             },
@@ -31,17 +34,15 @@ System.register(["@angular/core", "./item", "./item.service", "@angular/router",
         ],
         execute: function () {
             ItemsComponent = class ItemsComponent {
-                constructor(itemService, route, location) {
+                constructor(itemTypesService, itemService, route, location) {
+                    this.itemTypesService = itemTypesService;
                     this.itemService = itemService;
                     this.route = route;
                     this.location = location;
                 }
-                getItems() {
-                    this.itemService.getItems()
-                        .subscribe(items => this.items = items, error => this.errorMessage = error);
-                }
                 ngOnInit() {
                     this.getItems();
+                    this.getItemTypes();
                 }
                 onSelect(item) {
                     this.selectedItem = item;
@@ -52,7 +53,7 @@ System.register(["@angular/core", "./item", "./item.service", "@angular/router",
                 save(item) {
                     if (item.id) {
                         this.itemService.update(item)
-                            .subscribe(item => this.selectedItem = null, error => this.errorMessage = error, () => this.selectedItem = null);
+                            .subscribe(item => this.selectedItem = item, error => this.errorMessage = error, () => this.selectedItem = null);
                     }
                     else {
                         this.itemService.create(item)
@@ -67,14 +68,22 @@ System.register(["@angular/core", "./item", "./item.service", "@angular/router",
                 cancel() {
                     this.selectedItem = null;
                 }
+                getItems() {
+                    this.itemService.getItems()
+                        .subscribe(items => this.items = items, error => this.errorMessage = error);
+                }
+                getItemTypes() {
+                    this.itemTypesService.getItemTypes().subscribe(itemTypes => this.itemTypes = itemTypes, error => this.errorMessage = error);
+                }
             };
             ItemsComponent = __decorate([
                 core_1.Component({
                     selector: 'dashboard',
                     templateUrl: './app/components/items/items.html',
-                    providers: [item_service_1.ItemService]
+                    providers: [item_service_1.ItemService, item_types_service_1.ItemTypesService]
                 }),
-                __metadata("design:paramtypes", [item_service_1.ItemService,
+                __metadata("design:paramtypes", [item_types_service_1.ItemTypesService,
+                    item_service_1.ItemService,
                     router_1.ActivatedRoute,
                     common_1.Location])
             ], ItemsComponent);

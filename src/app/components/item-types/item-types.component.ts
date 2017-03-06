@@ -22,16 +22,8 @@ export class ItemTypesComponent implements OnInit {
     private location: Location
   ) { }
 
-  getItems(): void {
-    this.itemTypesService.getItems()
-      .subscribe(
-      itemTypes => this.itemTypes = itemTypes,
-      error => this.errorMessage = <any>error
-      );
-  }
-
   ngOnInit(): void {
-    this.getItems();
+    this.getItemTypes();
   }
 
   onSelect(item: ItemType): void {
@@ -43,14 +35,13 @@ export class ItemTypesComponent implements OnInit {
   }
 
   save(itemType: ItemType): void {
+    console.log(itemType);
     if (itemType.id) {
       this.itemTypesService.update(itemType)
-        .subscribe(item => this.selectedItemType = null, error => this.errorMessage = <any>error, () => this.selectedItemType = null);
-
-
+        .subscribe(itemType => this.selectedItemType = itemType, error => this.errorMessage = <any>error, () => this.selectedItemType = null);
     } else {
       this.itemTypesService.create(itemType)
-        .subscribe(item => this.itemTypes.push(itemType), error => this.errorMessage = <any>error, () => this.selectedItemType = null)
+        .subscribe(itemType => this.itemTypes.push(itemType), error => this.errorMessage = <any>error, () => this.selectedItemType = null)
     }
   }
 
@@ -66,4 +57,10 @@ export class ItemTypesComponent implements OnInit {
     this.selectedItemType = null;
   }
 
+  getItemTypes(): void {
+    this.itemTypesService.getItemTypes().subscribe(
+      itemTypes => this.itemTypes = itemTypes,
+      error => this.errorMessage = <any>error
+    );
+  }
 }
